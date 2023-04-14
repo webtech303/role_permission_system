@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Backend\DashboardController;
+// use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
+
+// use App\Http\Controllers\DashboardController as ControllersDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +23,8 @@ use App\Http\Controllers\DashboardController;
 // });
 
 Auth::routes();
-Route::group(['prefix' => '/admin'], function () {
-    Route::get('/',[DashboardController::class, 'index'])->name('admin.dashboard');
-});
+// Route::group(['prefix' => '/admin'], function () {
+    Route::get('/admin',[DashboardController::class, 'index'])->name('admin.dashboard');
+// });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
