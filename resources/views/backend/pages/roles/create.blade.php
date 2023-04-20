@@ -36,6 +36,7 @@
                     <div class="col-md-12 mt-5">
                     <p class="text-center text-success">{{Session::get('message')}}</p>
                         <h3>Create New Roles</h3>
+                        @include('backend.layouts.partials.messages')
                         <form action="{{ route('admin.roles.store') }}" method="POST">
                             @csrf
                         <div class="form-group mt-4">
