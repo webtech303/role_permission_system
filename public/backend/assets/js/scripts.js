@@ -93,24 +93,24 @@
         });
     }, false);
 
-    /*================================
-    datatable active
-    ==================================*/
-    if ($('#dataTable').length) {
-        $('#dataTable').DataTable({
-            responsive: true
-        });
-    }
-    if ($('#dataTable2').length) {
-        $('#dataTable2').DataTable({
-            responsive: true
-        });
-    }
-    if ($('#dataTable3').length) {
-        $('#dataTable3').DataTable({
-            responsive: true
-        });
-    }
+    // /*================================
+    // datatable active
+    // ==================================*/
+    // if ($('#dataTable').length) {
+    //     $('#dataTable').DataTable({
+    //         responsive: true
+    //     });
+    // }
+    // if ($('#dataTable2').length) {
+    //     $('#dataTable2').DataTable({
+    //         responsive: true
+    //     });
+    // }
+    // if ($('#dataTable3').length) {
+    //     $('#dataTable3').DataTable({
+    //         responsive: true
+    //     });
+    // }
 
 
     /*================================
