@@ -43,6 +43,14 @@
                             <label for="exampleInputEmail1">Role Name</label>
                             <input type="text" class="form-control" name="name" placeholder="Enter a role name">
                         </div>
+
+                        <div class="form-group mt-2">
+                            <label>All Permission</label>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="checkPermissionAll" value="1">
+                                <label class="form-check-label" for="checkPermissionAll">All</label>
+                            </div>
+                        </div>
                     
                         <div class="form-group mt-2">
                             <label for="name">Permissions</label>
@@ -66,5 +74,13 @@
 
 
 @section('scripts')
-   
+   <script>
+    $("#checkPermissionAll").click(function(){
+        if($(this).is(':checked')){
+            $('input[type=checkbox]').prop('checked', true);
+        }else{
+            $('input[type=checkbox]').prop('checked', false);
+        }
+    })
+   </script>
 @endsection
