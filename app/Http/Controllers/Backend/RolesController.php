@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -13,7 +14,7 @@ class RolesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public $roles, $permissions;
+    public $roles, $permissions, $permission_groups;
     public function index()
     {
         $this->roles = Role::all();
@@ -26,7 +27,11 @@ class RolesController extends Controller
     public function create()
     {
         $this->permissions = Permission::all();
-        return view('backend.pages.roles.Create',['permissions'=>$this->permissions]);
+        $this->permission_groups = User::getpermissionGroups();
+        return view('backend.pages.roles.Create',[
+            'permissions'=>$this->permissions,
+            'permission_groups'=>$this->permission_groups,
+        ]);
     }
 
     /**
@@ -34,15 +39,14 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-
+        //data validate
         $request->validate([
-            'name' => 'required|max:100|unique:roles'
-        ], [
-            'name.requried' => 'Please give a role name'
+            'name'=>'required|max:100|unique:roles'
+        ],[
+            'name.required' => 'Role Name Required'
         ]);
-        //data passing
-        $role = Role::create(['name' => $request->name]);
 
+        $role = Role::create(['name' => $request->name]);
         // $role = DB::table('roles')->where('name', $request->name)->first();
         $permissions = $request->input('permissions');
 
