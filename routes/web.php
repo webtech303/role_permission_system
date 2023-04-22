@@ -26,9 +26,10 @@ use Illuminate\Support\Facades\Route;
 // Auth::routes();
     Route::prefix('admin')->group(function () {
     Route::get('/',[DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/roles',[RolesController::class, 'index']);
+    Route::get('/roles',[RolesController::class, 'index'])->name('roles.index');
+    Route::get('/roles/edit/{id}',[RolesController::class, 'edit'])->name('roles.edit');
     Route::get('/roles/create',[RolesController::class, 'create']);
-    Route::post('/roles/store',[RolesController::class, 'store'])->name('admin.roles.store');
+    Route::post('/roles/store',[RolesController::class, 'store'])->name('roles.store');
   });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -51,7 +51,8 @@
                                 <td>{{$loop->index+1}}</td>
                                 <td>{{$role->name}}</td>
                                 <td>
-
+                                    <a class="btn btn-info text-wtite" href="{{route('roles.edit',['id'=>$role->id])}}">Edit</a>
+                                    <a class="btn btn-danger text-wtite" onclick="">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
