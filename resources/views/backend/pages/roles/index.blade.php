@@ -35,8 +35,8 @@
 
             <div class="row">
                     <!-- data table start -->
-                    <div class="col-md-12 mt-5">
-                        <h3>Role List</h3>
+                    <div class="col-md-12 mt-4">
+                        <h3 style="padding-bottom: 10px;">Role List</h3>
                     <table id="dataTable" class="table table-striped table-bordered" style="width:100%; text-align:center">
                     <thead>
                         <tr>

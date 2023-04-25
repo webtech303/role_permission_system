@@ -687,7 +687,7 @@ ul.breadcrumbs {
     display: block;
     font-size: 14px;
     font-weight: 400;
-    color: #7801ff;
+    color: #02d0ff;
     letter-spacing: 0;
     margin-right: 16px;
     position: relative;
@@ -718,8 +718,8 @@ ul.breadcrumbs {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     background: -webkit-linear-gradient(left, #8914fe 0%, #8063f5 100%);
-    background: linear-gradient(to right, #8914fe 0%, #8063f5 100%);
-    padding: 17px 38px;
+    background: linear-gradient(to right, #00ceef 0%, #ff001869 100%);
+    padding: 12px 18px;
     position: relative;
 }
 

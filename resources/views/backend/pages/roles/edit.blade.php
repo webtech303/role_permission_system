@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <h4 class="header-title">Edit Role</h4>
                     @include('backend.layouts.partials.messages')
-                    <form action="" method="POST">
+                    <form action="{{ route('roles.update',['id'=>$roles->id])}}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="name">Role Name</label>
@@ -49,28 +49,28 @@
                             <label for="name">Permissions</label>
 
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="checkPermissionAll" value="1">
+                                <input type="checkbox" class="form-check-input" id="checkPermissionAll" value="1" {{ App\Models\User::roleHasPermissions($roles, $all_permissions) ? 'checked' : ''}}>
                                 <label class="form-check-label" for="checkPermissionAll">All</label>
                             </div>
                             <hr>
                             @php $i = 1; @endphp
                             @foreach ($permission_groups as $group)
                                 <div class="row">
+                                        @php
+                                            $permissions = App\Models\User::getpermissionsByGroupName($group->name);
+                                            $j = 1;
+                                        @endphp
                                     <div class="col-3">
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="{{ $i }}Management" value="{{ $group->name }}" onclick="checkPermissionByGroup('role-{{ $i }}-management-checkbox', this)">
+                                            <input type="checkbox" class="form-check-input" id="{{ $i }}Management" value="{{ $group->name }}" onclick="checkPermissionByGroup('role-{{ $i }}-management-checkbox', this)" {{ App\Models\User::roleHasPermissions($roles, $permissions) ? 'checked' : ''}}>
                                             <label class="form-check-label" for="checkPermission">{{ $group->name }}</label>
                                         </div>
                                     </div>
 
                                     <div class="col-9 role-{{ $i }}-management-checkbox">
-                                        @php
-                                            $permissions = App\Models\User::getpermissionsByGroupName($group->name);
-                                            $j = 1;
-                                        @endphp
                                         @foreach ($permissions as $permission)
                                             <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" name="permissions[]" {{ $roles->hasPermissionTo($permission->name) ? 'checked' : '' }} id="checkPermission{{ $permission->id }}" value="{{ $permission->name }}">
+                                                <input type="checkbox" class="form-check-input" onclick="checkSinglePermission('role-{{ $i }}-management-checkbox', '{{ $i }}Management', {{count($permissions)}} )" name="permissions[]" {{ $roles->hasPermissionTo($permission->name) ? 'checked' : '' }} id="checkPermission{{ $permission->id }}" value="{{ $permission->name }}">
                                                 <label class="form-check-label" for="checkPermission{{ $permission->id }}">{{ $permission->name }}</label>
                                             </div>
                                             @php  $j++; @endphp
@@ -79,6 +79,7 @@
                                     </div>
 
                                 </div>
+                                <hr>
                                 @php  $i++; @endphp
                             @endforeach
 

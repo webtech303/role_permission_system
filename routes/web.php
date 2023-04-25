@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/',[DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/roles',[RolesController::class, 'index'])->name('roles.index');
     Route::get('/roles/edit/{id}',[RolesController::class, 'edit'])->name('roles.edit');
+    Route::post('/roles/update/{id}',[RolesController::class, 'update'])->name('roles.update');
     Route::get('/roles/create',[RolesController::class, 'create']);
     Route::post('/roles/store',[RolesController::class, 'store'])->name('roles.store');
   });

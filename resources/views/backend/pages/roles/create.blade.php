@@ -18,7 +18,7 @@
                 <h4 class="page-title pull-left">Role Create</h4>
                 <ul class="breadcrumbs pull-left">
                     <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li><span>All Roles</span></li>
+                    <li><span>Roles With Permission</span></li>
                 </ul>
             </div>
         </div>
@@ -39,9 +39,9 @@
                     @include('backend.layouts.partials.messages')
                     <form action="{{ route('roles.store') }}" method="POST">
                         @csrf
-                        <div class="form-group">
+                        <div class="form-group mt-5">
                             <label for="name">Role Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter a Role Name">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter A Role Name">
                         </div>
 
                         <div class="form-group">
@@ -78,13 +78,10 @@
                                     </div>
 
                                 </div>
+                                <hr>
                                 @php  $i++; @endphp
                             @endforeach
-
-                            
                         </div>
-                       
-                        
                         <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save Role</button>
                     </form>
                 </div>

@@ -14,7 +14,7 @@ class RolesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public $roles, $permissions, $permission_groups;
+    public $roles, $permissions, $permission_groups, $all_permissions;
     public function index()
     {
         $this->roles = Role::all();
@@ -26,7 +26,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        $this->permissions = Permission::all();
+        $this->all_permissions = Permission::all();
         $this->permission_groups = User::getpermissionGroups();
         return view('backend.pages.roles.Create',[
             'permissions'=>$this->permissions,
@@ -70,11 +70,11 @@ class RolesController extends Controller
     public function edit(string $id)
     {
         $this->roles = Role::findById($id);
-        $this->permissions = Permission::all();
+        $this->all_permissions = Permission::all();
         $this->permission_groups = User::getpermissionGroups();
         return view('backend.pages.roles.edit',[
             'roles'=>$this->roles,
-            'permissions'=>$this->permissions,
+            'all_permissions'=>$this->all_permissions,
             'permission_groups'=>$this->permission_groups,
         ]);
     }
@@ -84,7 +84,20 @@ class RolesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name'=>'required|max:100'
+        ],[
+            'name.required' => 'Role Name Required'
+        ]);
+
+        $this->roles = Role::findById($id);
+        // $role = DB::table('roles')->where('name', $request->name)->first();
+        $permissions = $request->input('permissions');
+
+        if (!empty($permissions)) {
+            $this->roles->syncPermissions($permissions);
+        }
+        return redirect()->back()->with('message','Category Info Save Successfully');
     }
 
     /**
